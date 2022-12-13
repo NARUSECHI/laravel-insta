@@ -126,15 +126,17 @@
                     {{-- Admin Controls --}}
                         @if (request()->is('admin/*'))
                             <div class="col-3">
-                                <a href="{{ route('admin.users') }}" class="list-group-item {{ request()->is('admin/users')? 'active':''}}">
-                                    <i class="fa-solid fa-users"></i> Users
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa-solid fa-newspapers"></i> Posts
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa-solid fa-tags"></i> Categories
-                                </a>
+                                <div class="list-group">
+                                    <a href="{{ route('admin.users') }}" class="list-group-item {{ request()->is('admin/users')? 'active':''}}">
+                                        <i class="fa-solid fa-users"></i> Users
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa-solid fa-newspapers"></i> Posts
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa-solid fa-tags"></i> Categories
+                                    </a>
+                                </div>
                             </div>
                             
                         @endif

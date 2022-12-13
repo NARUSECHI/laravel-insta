@@ -76,4 +76,5 @@ class User extends Authenticatable
         //Auth::user()->id is the follower_id
         //Firstly, get all the followers of the user ($this->follows()). Then from that list, search for the Auth user from the follower column (where('follower_id' Auth::user()->id))
     }
+
 }

@@ -17,8 +17,23 @@ class UsersController extends Controller
 
     public function index()
     {
-        $all_users = $this->user->latest()->paginate(10);
+        $all_users = $this->user->withTrashed()->latest()->paginate(10);
+        //withTrashed() - Include soft deketed records in a query's result
 
         return view('admin.users.index')->with('all_users',$all_users);
+    }
+
+    public function deactivate($id)
+    {
+        $this->user->destroy($id);
+        return redirect()->back();
+    }
+
+    public function activate($id)
+    {
+        $this->user->onlyTrashed()->findOrFail($id)->restore();
+        return redirect()->back();
+        // onlyTrashed - retrieves soft deleted records only.
+        //restore() - This will "un-delete" a deleted model. This will set the deleted_at to Null.
     }
 }

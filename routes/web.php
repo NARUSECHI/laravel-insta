@@ -57,5 +57,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
         // USER
         Route::get('/users',[UsersController::class,'index'])->name('users');
+        Route::delete('/users/{id}/deactivate',[UsersController::class,'deactivate'])->name('users.deactivate');
+        Route::patch('/users/{id}/restore',[UsersCOntroller::class,'activate'])->name('users.activate');
     });
 }); 

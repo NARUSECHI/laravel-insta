@@ -31,21 +31,36 @@
                     </td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at}}</td>
-                    <td><i class="fa-solid fa-circle text-success"></i>&nbsp; Active</td>
+                    <td>
+                        @if ($user->trashed())
+                            <i class="fa-regular fa-circle text-secondary"></i> &nbsp; Inactive                            
+                        @else
+                            <i class="fa-solid fa-circle text-success"></i>&nbsp; Active
+                        @endif
+                    </td>
                     <td>
                         @if (Auth::user()->id !== $user->id)
                         <div class="dropdown">    
                             <button class="btn btn-sm" data-bs-toggle="dropdown">
                                     <i class="fa-solid fa-ellipsis"></i>
                             </button>
-                                
-                            <div class="dropdown-menu">
-                                <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}">
-                                    <i class="fa-solid fa-user-slash"></i> Deactivate {{$user->name}}
-                                </button>
-                            </div>
+
+                            @if ($user->trashed())
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#activate-user-{{ $user->id }}">
+                                        <i class="fa-solid fa-user-check"></i> Activate {{$user->name}}
+                                    </button>
+                                </div>
+                            @else
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}">
+                                        <i class="fa-solid fa-user-slash"></i> Deactivate {{$user->name}}
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                         {{-- Include the modal here --}}
+                        @include('admin.users.modal.status')
                         @endif
                     </td>
                 </tr>
