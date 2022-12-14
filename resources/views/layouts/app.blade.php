@@ -130,10 +130,10 @@
                                     <a href="{{ route('admin.users') }}" class="list-group-item {{ request()->is('admin/users')? 'active':''}}">
                                         <i class="fa-solid fa-users"></i> Users
                                     </a>
-                                    <a href="#" class="list-group-item">
+                                    <a href="{{ route('admin.posts') }}" class="list-group-item {{ request()->is('admin/posts')? 'active':'' }}">
                                         <i class="fa-solid fa-newspapers"></i> Posts
                                     </a>
-                                    <a href="#" class="list-group-item">
+                                    <a href="{{ route('admin.categories')}}" class="list-group-item">
                                         <i class="fa-solid fa-tags"></i> Categories
                                     </a>
                                 </div>

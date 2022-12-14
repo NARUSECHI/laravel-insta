@@ -8,7 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\Admin\UsersController;
-
+use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\Admin\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,18 @@ Route::group(['middleware' => 'auth'],function(){
         // USER
         Route::get('/users',[UsersController::class,'index'])->name('users');
         Route::delete('/users/{id}/deactivate',[UsersController::class,'deactivate'])->name('users.deactivate');
-        Route::patch('/users/{id}/restore',[UsersCOntroller::class,'activate'])->name('users.activate');
-    });
+        Route::patch('/users/{id}/restore',[UsersController::class,'activate'])->name('users.activate');
+        
+        //POSTS
+        Route::get('/posts',[PostsController::class,'index'])->name('posts');
+        Route::delete('/posts/{id}/hide',[PostsController::class,'hide'])->name('posts.hide');
+        Route::patch('/posts/{id}/unhide',[PostsController::class,'unhide'])->name('posts.unhide');
+        
+        //Categories
+        Route::get('/categories',[CategoriesController::class,'index'])->name('categories');
+        Route::post('/categories/store',[CategoriesController::class,'store'])->name('categories.store');
+        Route::patch('/categories/{id}/update',[CategoriesController::class,'update'])->name('categories.update');
+        Route::delete('/categories/{id}/destroy',[CategoriesController::class,'destroy'])->name('categories.destroy');
+    
+    }); 
 }); 

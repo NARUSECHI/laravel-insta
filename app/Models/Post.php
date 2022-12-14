@@ -5,17 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\User;
+use App\Models\CategoryPost;
+use App\Models\Comment;
+use App\Models\Like;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     // A post belongs to a user
     // To get the owner of the post
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withTrashed();
     }
 
     // To get categories under a post
