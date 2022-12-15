@@ -1,3 +1,4 @@
+{{-- Edit --}}
 <div class="modal fade" id="edit-category-{{ $category->id }}">
     <div class="modal-dialog">
         <form action="{{ route('admin.categories.update',$category->id) }}" method="post">
@@ -21,6 +22,7 @@
     </div>
 </div>
 
+{{-- Delete --}}
 <div class="modal fade" id="delete-category-{{ $category->id }}">
     <div class="modal-dialog">
         <form action="{{ route('admin.categories.destroy',$category->id) }}" method="post">
@@ -29,11 +31,12 @@
             <div class="modal-content border-danger">
                 <div class="modal-header border-danger">
                     <h3 class="h5 modal-title">
-                        <i class="fa-regular fa-pen-to-square"></i> Delete Category
+                        <i class="fa-regular fa-trash-can"></i> Delete Category
                     </h3>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete <span class="fw-bold">{{$category->name}}</span> ?
+                    <p>Are you sure you want to delete <span class="fw-bold">{{$category->name}}</span> category ?</p>
+                    <p class="fw-light">This action will affect all the posts under this category. Posts without a category will fall underuncategorized.</p>
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal">Cancel</button>
